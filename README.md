@@ -1,33 +1,39 @@
-# EmotiSense AI
+# EmotiSense AI 🧠
 
 ### AI-Powered Facial Expression Analysis
 
-EmotiSense AI is a web application that uses a webcam or an uploaded image to estimate visible facial expressions using DeepFace.
+EmotiSense AI is a web application that estimates visible facial expressions from webcam input or uploaded images using a pretrained DeepFace model.
 
-## Features
+The project combines a responsive web interface with a Python Flask backend to provide facial expression predictions and confidence scores.
 
-- Real-time webcam facial-expression analysis
-- Upload an image for expression analysis
-- Seven expression categories: Happy, Sad, Angry, Surprise, Fear, Disgust, and Neutral
-- Predicted expression and confidence score
-- Recent expression history
-- Start and stop camera controls
-- Image preview and removal
-- File-type and file-size validation
-- Responsive web interface
-- Flask API for image analysis
+## ✨ Features
 
-## Technologies Used
+- 📷 Real-time webcam-based facial expression analysis
+- 🖼️ Image upload and preview
+- 🤖 Seven expression categories: Happy, Sad, Angry, Surprise, Fear, Disgust, and Neutral
+- 📊 Predicted expression and confidence score
+- 🕘 Recent expression history
+- 🎥 Camera start and stop controls
+- 🗑️ Image removal and reselection
+- ✅ File type and size validation
+- 📱 Responsive user interface
+- 🔌 Flask API for image analysis
 
-- HTML5, CSS3, JavaScript
-- Python 3.12
-- Flask and Flask-CORS
-- DeepFace
-- OpenCV
-- NumPy
-- TensorFlow
+## 🛠️ Tech Stack
 
-## Project Structure
+| Technology | Purpose |
+|---|---|
+| HTML5 | Web structure |
+| CSS3 | Styling and responsive design |
+| JavaScript | Frontend interactions |
+| Python 3.12 | Backend development |
+| Flask | API and server |
+| Flask-CORS | Cross-origin requests |
+| DeepFace | Facial expression analysis |
+| OpenCV | Image processing |
+| NumPy and TensorFlow | Model dependencies |
+
+## 📁 Project Structure
 
 ```text
 AI-Emotion-Detector/
@@ -35,19 +41,24 @@ AI-Emotion-Detector/
 ├── index.html
 ├── style.css
 ├── script.js
-├── README.md
 ├── requirements.txt
-└── venv/
+├── README.md
+└── .gitignore
 ```
 
-## Getting Started
+## 🚀 Getting Started
 
-### 1. Install Python
+### Prerequisites
 
-Install Python 3.12 and verify the installation:
+- Python 3.12
+- Visual Studio Code
+- VS Code Live Server extension
+
+### 1. Clone the Repository
 
 ```bash
-python --version
+git clone https://github.com/Ayesha0326/AI-Emotion-Detector.git
+cd AI-Emotion-Detector
 ```
 
 ### 2. Create a Virtual Environment
@@ -62,7 +73,7 @@ Activate it on Windows Command Prompt:
 venv\Scripts\activate
 ```
 
-Or, in Git Bash:
+Or in Git Bash:
 
 ```bash
 source venv/Scripts/activate
@@ -70,50 +81,24 @@ source venv/Scripts/activate
 
 ### 3. Install Dependencies
 
-With the virtual environment activated, run:
-
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Start the Backend
+### 4. Start the Flask Backend
 
 ```bash
 python app.py
 ```
 
-The Flask backend runs at:
+The backend runs locally at:
 
 `http://127.0.0.1:5000`
 
-API status endpoint:
+Check API status at:
 
 `http://127.0.0.1:5000/api/status`
 
-### 5. Open the Frontend
+### 5. Launch the Frontend
 
-Open `index.html` using VS Code Live Server.
-
-Keep the Flask backend running while using the application. Allow webcam access when prompted by the browser.
-
-## Important Notes
-
-- The application uses a pretrained DeepFace model; it is not a custom-trained model.
-- The first analysis may take longer while the model initializes.
-- Facial-expression predictions are estimates of visible expressions and do not establish a person's actual internal emotional state.
-- The backend is configured for local development and requires additional changes before online deployment.
-
-## Future Improvements
-
-- Improve testing and error handling
-- Add detailed analysis reports
-- Improve reliability and performance
-- Configure secure production deployment
-
-## Author
-
-**Ayesha Yaseen**
-
-Software Developer | Web Developer | WordPress Developer
-
-BS Computer Science Student
+Open `index.html` in Visual Studio Code and launch it using Live
