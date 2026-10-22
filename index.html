@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EmotiSense AI estimates visible facial expressions from a live camera or uploaded image.">
+    <title>EmotiSense AI | Emotion Detector</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-icon">✦</span>
+            EmotiSense <span class="logo-ai">AI</span>
+        </a>
+        <div class="system-status">
+            <span class="status-dot"></span>
+            <span>AI System Ready</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <span class="eyebrow">AI-POWERED EXPRESSION ANALYSIS</span>
+            <h1>Understand expressions.<br><span>Explore the power of AI.</span></h1>
+            <p>Estimate visible facial expressions using your camera or an uploaded image.</p>
+        </section>
+
+        <section class="workspace">
+            <div class="card camera-card">
+                <div class="card-heading">
+                    <div>
+                        <h2>Live Camera</h2>
+                        <p>Position your face inside the frame</p>
+                    </div>
+                    <span id="liveBadge" class="live-badge">OFFLINE</span>
+                </div>
+
+                <div class="camera-frame">
+                    <video id="video" autoplay playsinline muted></video>
+
+                    <div id="cameraPlaceholder" class="camera-placeholder">
+                        <div class="camera-icon">◎</div>
+                        <h3>Your camera preview</h3>
+                        <p>Start your camera to begin</p>
+                    </div>
+
+                    <div id="cameraOverlay" class="camera-overlay" hidden>
+                        <span class="overlay-dot"></span>
+                        Camera active
+                    </div>
+                </div>
+
+                <div class="camera-actions">
+                    <button id="startCamera" class="btn btn-primary" type="button">
+                        <span>▶</span> Start Camera
+                    </button>
+                    <button id="stopCamera" class="btn btn-secondary" type="button" disabled>
+                        Stop Camera
+                    </button>
+                </div>
+
+                <p id="cameraMessage" class="message" role="status" aria-live="polite">
+                    Camera is not started yet.
+                </p>
+            </div>
+
+            <div class="card result-card">
+                <div class="card-heading">
+                    <div>
+                        <h2>Expression Analysis</h2>
+                        <p>Results from the AI model</p>
+                    </div>
+                    <div class="brain-icon">✧</div>
+                </div>
+
+                <div class="emotion-result">
+                    <div id="emotionEmoji" class="emotion-emoji">☺</div>
+                    <p class="result-label">DETECTED EXPRESSION</p>
+                    <h3 id="emotionName">Waiting for analysis</h3>
+                    <p id="emotionDescription">Start your camera or upload an image.</p>
+                    <span id="analysisStatus" class="analysis-status">Ready to start</span>
+                </div>
+
+                <div class="confidence-section">
+                    <div class="confidence-heading">
+                        <span>Model confidence</span>
+                        <strong id="confidenceValue">—</strong>
+                    </div>
+                    <div
+                        class="progress-track"
+                        role="progressbar"
+                        aria-label="Model confidence"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="0"
+                        id="confidenceTrack"
+                    >
+                        <div id="confidenceBar" class="progress-fill"></div>
+                    </div>
+                    <p class="confidence-caption">Confidence reported by the model</p>
+                </div>
+
+                <div class="result-note">
+                    <span>ⓘ</span>
+                    <p>This tool estimates visible facial expressions. It cannot confirm a person's actual internal emotional state.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card upload-card">
+            <div class="card-heading">
+                <div>
+                    <h2>Analyze an Image</h2>
+                    <p>Upload a photo to estimate its visible facial expression</p>
+                </div>
+                <div class="brain-icon">↥</div>
+            </div>
+
+            <form id="uploadForm" class="upload-form">
+                <label for="imageUpload" class="upload-dropzone">
+                    <span class="upload-icon" aria-hidden="true">↑</span>
+                    <strong>Choose an image to analyze</strong>
+                    <span>JPG, JPEG, PNG or WEBP · Maximum 8 MB</span>
+                    <span class="btn btn-secondary upload-browse">Browse Images</span>
+                </label>
+
+                <input
+                    type="file"
+                    id="imageUpload"
+                    name="image"
+                    accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                    hidden
+                >
+
+                <div id="imagePreviewContainer" class="image-preview-container" hidden>
+                    <img id="imagePreview" alt="Selected image preview">
+                    <div class="selected-image-info">
+                        <span id="selectedImageName"></span>
+                        <button id="removeImage" class="btn btn-small" type="button">
+                            Remove image
+                        </button>
+                    </div>
+                </div>
+
+                <button id="analyzeImageButton" class="btn btn-primary" type="submit" disabled>
+                    Analyze Image
+                </button>
+
+                <p id="uploadMessage" class="message" role="status" aria-live="polite">
+                    Select an image to get started.
+                </p>
+            </form>
+        </section>
+
+        <section class="card history-card">
+            <div class="card-heading history-heading">
+                <div>
+                    <h2>Recent Expressions</h2>
+                    <p>Your latest analysis results during this session</p>
+                </div>
+                <div class="history-actions">
+                    <span id="historyCount" class="history-count">0 results</span>
+                    <button id="clearHistory" class="btn btn-small" type="button" disabled>
+                        Clear history
+                    </button>
+                </div>
+            </div>
+
+            <div id="emotionHistory" class="history-list" aria-live="polite">
+                <div class="history-empty">
+                    <span>◷</span>
+                    <p>No expressions detected yet.</p>
+                    <small>Start your camera or upload an image to build your history.</small>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>EmotiSense AI</p>
+            <span>Built with HTML, CSS, JavaScript, Python and DeepFace</span>
+        </footer>
+    </main>
+</body>
+</html>
